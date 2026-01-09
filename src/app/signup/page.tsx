@@ -12,12 +12,13 @@ export default function SignupPage() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirm, setConfirm] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError("");
+        setError(null);
 
         if (!name.trim() || !email.trim()) {
             setError("Name and email are required.");
@@ -134,8 +135,4 @@ export default function SignupPage() {
             </Container>
         </main>
     );
-}
-
-function setError(arg0: string) {
-    throw new Error("Function not implemented.");
 }
