@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* When header toggles data-header-cover, make the sticky header act as the hero */
+html[data-header-cover="true"] header.site-header {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-width: 0; /* no bottom border while acting as hero */
+  background: var(--tw-bg-opacity, transparent); /* let it blend; adjust if you want solid */
+}
+
+/* Center and expand inner container so header content looks like a hero */
+html[data-header-cover="true"] header.site-header > .max-w-5xl {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Hide the separate Cover section when header is acting as the cover */
+html[data-header-cover="true"] #cover {
+  display: none;
+}
+
+/* Slightly enlarge nav spacing while in hero mode */
+html[data-header-cover="true"] header.site-header nav {
+  gap: 1.25rem;
+}
+
+/* When scrolled away from top, give header a solid background for readability */
+header.site-header {
+  background-color: rgba(255,255,255,0.9);
+  backdrop-filter: blur(4px);
+}
+@media (prefers-color-scheme: dark) {
+  header.site-header {
+    background-color: rgba(17,24,39,0.72); /* dark slate overlay */
+  }
+}
+
+/* Responsive tweak: reduce header min-height on small screens */
+@media (max-width: 767px) {
+  html[data-header-cover="true"] header.site-header {
+    min-height: auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
