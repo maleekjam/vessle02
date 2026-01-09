@@ -5,7 +5,6 @@ import Container from "../_components/container";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { error } from "console";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -16,6 +15,7 @@ export default function SignupPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
+    
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(null);
